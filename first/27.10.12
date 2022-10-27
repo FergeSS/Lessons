@@ -33,6 +33,84 @@ int main(){
     
     std::cout << std::endl;
     
+    #include <iostream>
+
+int main(){
+    int m, n;
+    int count = 1;
+    int count_copy;
+    int dir;
+    
+    std::cin >> m >> n;
+    std::cout << "dir: ";
+    std::cin >> dir;
+    std::cout << std::endl;
+    
+    int** arr_2d = new int*[m];
+    int** zmeika = new int*[m];
+    
+    for (int i=0; i<m; ++i)
+        arr_2d[i] = new int[n];
+        
+     for (int i=0; i<m; ++i)
+        zmeika[i] = new int[n];
+    
+    if (dir == 0){
+        for (int i=0; i<m;++i){
+            for (int k=0; k<n;++k){
+                arr_2d[i][k] = count;
+                ++count; 
+            }
+        }
+    
+        for (int i=0; i<m; ++i){
+            for (int k=0; k<n; ++k){
+                if (i%2==0)
+                    zmeika[i][k]=arr_2d[i][k];
+                else
+                    zmeika[i][k]=arr_2d[i][n - 1 - k];
+                ;
+            }
+        }
+        
+        for (int i=0; i<m;++i){
+            for (int k=0; k<n;++k)
+                std::cout << zmeika[i][k] << " ";
+            std::cout << std::endl;
+        }
+    }
+    else{
+        for (int i=0; i<m;++i){
+            count_copy = count;
+            for (int k=0; k<n;++k){
+                arr_2d[i][k] = count_copy;
+                count_copy+= m; 
+            }
+            count += 1;
+        }
+    
+        for (int i=0; i<m; ++i){
+            for (int k=0; k<n; ++k){
+                if (k%2==0)
+                    zmeika[i][k]=arr_2d[i][k];
+                else
+                    zmeika[i][k]=arr_2d[m - 1 - i][k];
+                ;
+            }
+        }
+        
+        for (int i=0; i<m;++i){
+            for (int k=0; k<n;++k)
+                std::cout << zmeika[i][k] << " ";
+            std::cout << std::endl;
+        }
+    }
+    
+    for (int i = 0; i<m; ++i)
+        delete []arr_2d[i];
+    delete []arr_2d;
+    
+}
     arr_2d = new int*[n];
     
     for (int i=0; i<n; ++i)
